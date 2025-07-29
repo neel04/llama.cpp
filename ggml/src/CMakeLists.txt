@@ -1335,6 +1335,7 @@ add_library(ggml
             ../../../../src/ggml-bitnet-mad.cpp
             ../../../../src/ggml-bitnet-lut.cpp
             ../../../../src/ggml-bitnet-rsr.cpp
+            ../../../../src/utils.cpp
             ${GGML_SOURCES_CUDA}      ${GGML_HEADERS_CUDA}
             ${GGML_SOURCES_METAL}     ${GGML_HEADERS_METAL}
             ${GGML_SOURCES_RPC}       ${GGML_HEADERS_RPC}
