@@ -134,6 +134,12 @@ if (NOT ${CMAKE_SYSTEM_PROCESSOR} MATCHES "loongarch64")
     target_include_directories(test-json-schema-to-grammar PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../examples/server)
 endif()
 
+# RSR naive path test
+add_executable(test-rsr-mul-mat ../../../tests/test-rsr-mul-mat.cpp get-model.cpp)
+install(TARGETS test-rsr-mul-mat RUNTIME)
+target_link_libraries(test-rsr-mul-mat PRIVATE common)
+add_test(NAME test-rsr-mul-mat COMMAND $<TARGET_FILE:test-rsr-mul-mat>)
+
 # dummy executable - not installed
 get_filename_component(TEST_TARGET test-c.c NAME_WE)
 add_executable(${TEST_TARGET} test-c.c)

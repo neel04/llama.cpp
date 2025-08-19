@@ -48,6 +48,7 @@
 #include <llamafile/sgemm.h>
 #endif
 #if defined(GGML_BITNET_ARM_TL1) || defined(GGML_BITNET_X86_TL2)
+#include "ggml-bitnet-rsr.h"
 #include "ggml-bitnet.h"
 #endif
 
@@ -11723,6 +11724,23 @@ static void ggml_compute_forward_mul_mat_one_chunk(const struct ggml_compute_par
     const int64_t blck_1 = 16;
 
     const size_t src1_col_stride = src1_cont || src1->type != vec_dot_type ? row_size : nb11;
+
+    if (getenv("BITNET_USE_RSR")) {
+        ggml_bitnet_rsr_mul_mat(src0,
+                                src1,
+                                dst,
+                                ir0_start,
+                                ir0_end,
+                                ir1_start,
+                                ir1_end,
+                                num_rows_per_vec_dot,
+                                row_size,
+                                src1_col_stride,
+                                (void *)wdata,
+                                vec_dot_type,
+                                vec_dot);
+        return;
+    }
 
     // attempt to reduce false-sharing (does not seem to make a difference)
     // 16 * 2, accounting for mmla kernels

@@ -3565,7 +3565,7 @@ void quantize_row_i8_s(const float * x, void * y, int64_t n, float* act_scales, 
 //             int group_idx = j / 32;
 //             int group_pos = j % 32;
 //             uint8_t temp = (q8[i * QK_I2 + j] << (6 - 2 * group_idx));
-//             i2_weight[i * 32 + group_pos] |= temp;            
+//             i2_weight[i * 32 + group_pos] |= temp;
 //         }
 //     }
 
