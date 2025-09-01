@@ -12562,7 +12562,7 @@ UseGgmlGemm2:;
     }
 
     // Now select a reasonable chunk size.
-    int chunk_size = 16;
+    int chunk_size = 128;
 
     // We need to step up the size if it's small
     if (nr0 == 1 || nr1 == 1) {
